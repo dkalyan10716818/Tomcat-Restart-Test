@@ -1,8 +1,6 @@
 name: Restart Tomcat Servers
 on: 
- push:
-   branches:
-     - main  # Or any other branch
+   workflow_dispatch:
 jobs:
  deploy:
    runs-on: pg-pgi-4gb-1cpu
@@ -20,5 +18,12 @@ jobs:
      - name: Run Ansible Playbook
        run: |
          ansible-playbook -i Inventory.yml Tomcat_Restart.yml
+     - name: Run tomcat script
+       run: |
+         python tomcat.py
+     - name: Run delete temps
+       run: |
+         python delete_folder.py
+      
        env:
          ANSIBLE_HOST_KEY_CHECKING: 'false'
