@@ -1,5 +1,5 @@
 name: Restart Tomcat Servers
-on:
+on: 
  push:
    branches:
      - main  # Or any other branch
