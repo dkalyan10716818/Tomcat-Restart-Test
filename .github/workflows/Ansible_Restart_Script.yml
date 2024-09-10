@@ -5,7 +5,7 @@ on:
      - main  # Or any other branch
 jobs:
  deploy:
-   runs-on: ubuntu-latest
+   runs-on: pg-pgi-4gb-1cpu
    steps:
      - name: Checkout repository
        uses: actions/checkout@v3
@@ -19,6 +19,6 @@ jobs:
          pip install ansible
      - name: Run Ansible Playbook
        run: |
-         ansible-playbook -i inventory.yml tomcat_restart.yml
+         ansible-playbook -i Inventory.yml Tomcat_Restart.yml
        env:
          ANSIBLE_HOST_KEY_CHECKING: 'false'
