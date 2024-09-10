@@ -1,5 +1,6 @@
 name: Restart Tomcat Servers
 on: 
+   push:
    workflow_dispatch:
 jobs:
  deploy:
