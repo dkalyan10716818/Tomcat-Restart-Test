@@ -1,0 +1,22 @@
+---
+- name: Restart Tomcat Servers
+ hosts: tomcat_servers
+ become: yes
+ tasks:
+   - name: Stop Tomcat service
+     ansible.builtin.systemd:
+       name: tomcat
+       state: stopped
+   - name: Clear Tomcat temp directory
+     ansible.builtin.file:
+       path: /path/to/tomcat/temp
+       state: absent
+   - name: Recreate Tomcat temp directory
+     ansible.builtin.file:
+       path: /path/to/tomcat/temp
+       state: directory
+       mode: '0755'
+   - name: Start Tomcat service
+     ansible.builtin.systemd:
+       name: tomcat
+       state: started
